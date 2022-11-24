@@ -4,10 +4,11 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.time.Instant;
 
 @Entity
-public class Utente {
+public class Utente implements Serializable {
     @Column(name = "user_id", nullable = false)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,10 +16,10 @@ public class Utente {
     @NotBlank(message = "Name may not be blank")
     private String username;
     @NotBlank
-    @Size(min = 4, max = 32, message = "Name must be between 4 and 32 characters long")
+    @Size(min = 4, max = 32, message = "Password must be between 4 and 32 characters long")
     private String password;
     @Email
-    @NotBlank(message = "Name may not be blank")
+    @NotBlank(message = "Email may not be blank")
     private String email;
     private Instant created;
 }
