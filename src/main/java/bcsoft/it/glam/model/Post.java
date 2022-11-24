@@ -5,10 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.URL;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -18,11 +15,11 @@ import java.time.Instant;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-
 public class Post implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="post_id")
     private long postId;
     @NotBlank(message = "Nome Post may not be blank")
     private String nomePost;
@@ -33,6 +30,11 @@ public class Post implements Serializable {
     private String descrizione;
     private int contatoreVoti;
     private Instant dataCreazione;
+
+    @ManyToOne
+    @JoinColumn(name="userId", referencedColumnName = "user_id")
+    private Utente utente;
+
 
 
 }

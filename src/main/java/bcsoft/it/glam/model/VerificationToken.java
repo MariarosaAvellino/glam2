@@ -21,4 +21,8 @@ public class VerificationToken implements Serializable {
     @Column(name = "data_scadenza")
     private Instant dataScadenza;
 
+    @OneToOne
+    @JoinColumn(name="userId", referencedColumnName = "user_id")
+    private Utente utente;
+
 }

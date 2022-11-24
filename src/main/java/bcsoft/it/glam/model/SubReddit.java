@@ -23,4 +23,8 @@ public class SubReddit implements Serializable {
     @NotBlank(message = "Description may not be blank")
     private String descrizione;
     private Instant dataCreazione;
+
+    @ManyToOne
+    @JoinColumn(name="userId", referencedColumnName = "user_id")
+    private Utente utente;
 }
