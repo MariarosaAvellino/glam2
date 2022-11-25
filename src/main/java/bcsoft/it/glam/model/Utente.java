@@ -16,6 +16,7 @@ import java.time.Instant;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Utente implements Serializable {
+
     @Column(name = "user_id", nullable = false)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,4 +30,5 @@ public class Utente implements Serializable {
     @NotBlank(message = "Email may not be blank")
     private String email;
     private Instant created;
+
 }

@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -27,4 +28,6 @@ public class SubReddit implements Serializable {
     @ManyToOne
     @JoinColumn(name="userId", referencedColumnName = "user_id")
     private Utente utente;
+    @OneToMany
+    private List<Post> posts;
 }
