@@ -1,5 +1,9 @@
 package bcsoft.it.glam.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -8,7 +12,11 @@ import java.io.Serializable;
 import java.time.Instant;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Utente implements Serializable {
+
     @Column(name = "user_id", nullable = false)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,4 +30,5 @@ public class Utente implements Serializable {
     @NotBlank(message = "Email may not be blank")
     private String email;
     private Instant created;
+
 }

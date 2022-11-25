@@ -14,19 +14,21 @@ import java.time.Instant;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-
 public class Commento implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull
-    private long commento_id;
+    private long id;
     @NotEmpty
     private String testo;
     private Instant dataCreazione;
 
-
-
+    @ManyToOne
+    @JoinColumn(name="postId", referencedColumnName = "post_id")
+    private Post post;
+    @ManyToOne
+    @JoinColumn(name="userId", referencedColumnName = "user_id")
+    private Utente utente;
 
 
 }

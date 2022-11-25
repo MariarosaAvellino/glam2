@@ -8,13 +8,14 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 public class SubReddit implements Serializable {
-    @Column(name = "id", nullable = false)
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -23,4 +24,10 @@ public class SubReddit implements Serializable {
     @NotBlank(message = "Description may not be blank")
     private String descrizione;
     private Instant dataCreazione;
+
+    @ManyToOne
+    @JoinColumn(name="userId", referencedColumnName = "user_id")
+    private Utente utente;
+    @OneToMany
+    private List<Post> posts;
 }
