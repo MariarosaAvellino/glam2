@@ -36,6 +36,9 @@ public class Post implements Serializable {
     @ManyToOne
     @JoinColumn(name="userId", referencedColumnName = "user_id")
     private Utente utente;
+    @ManyToOne
+    @JoinColumn(name = "id")
+    private SubReddit subReddit;
 
 
 
