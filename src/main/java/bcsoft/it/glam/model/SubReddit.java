@@ -14,7 +14,7 @@ import java.time.Instant;
 @AllArgsConstructor
 @Entity
 public class SubReddit implements Serializable {
-    @Column(name = "id", nullable = false)
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -23,4 +23,8 @@ public class SubReddit implements Serializable {
     @NotBlank(message = "Description may not be blank")
     private String descrizione;
     private Instant dataCreazione;
+
+    @ManyToOne
+    @JoinColumn(name="userId", referencedColumnName = "user_id")
+    private Utente utente;
 }
