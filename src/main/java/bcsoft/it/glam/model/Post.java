@@ -25,7 +25,7 @@ public class Post implements Serializable {
     @NotBlank(message = "Nome Post may not be blank")
     private String nomePost;
     @Nullable
-    @URL
+ //   @URL
     private String url;
     @NotNull
     @Lob
