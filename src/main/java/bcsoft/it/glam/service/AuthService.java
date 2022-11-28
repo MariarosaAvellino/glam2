@@ -32,10 +32,10 @@ public class AuthService {
         utenteRepository.save(user);
     }
 
-    private String generateVerificationTokrn (Utente utente){
+    private String generateVerificationToken (Utente utente){
         String token = UUID.randomUUID().toString();
         VerificationToken verificationToken = new VerificationToken();
-        verificationToken.setUtente(utente);;
+        verificationToken.setUtente(utente);
         verificationToken.setToken(token);
         verificationTokenRepository.save(verificationToken);
         return token;
