@@ -2,12 +2,15 @@ package bcsoft.it.glam.service;
 
 import bcsoft.it.glam.dto.RegisterRequest;
 import bcsoft.it.glam.model.Utente;
+import bcsoft.it.glam.model.VerificationToken;
 import bcsoft.it.glam.repository.UtenteRepository;
+import bcsoft.it.glam.repository.VerificationTokenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
+import java.util.UUID;
 
 public class AuthService {
 
@@ -15,6 +18,8 @@ public class AuthService {
     PasswordEncoder passwordEncoder;
     @Autowired
     UtenteRepository utenteRepository;
+    @Autowired
+    VerificationTokenRepository verificationTokenRepository;
 
     @Transactional
     public void signUp(RegisterRequest registerRequest){
@@ -27,7 +32,12 @@ public class AuthService {
         utenteRepository.save(user);
     }
 
-
-
-
+    private String generateVeririfìcationToken(Utente utente){
+        String token =  UUID.randomUUID().toString();
+        VerificationToken verificationToken = new VerificationToken();
+        verificationToken.setUtente(utente);
+        verificationToken.setToken(token);
+        verificationTokenRepository.save(verificationToken);
+        return token;
+    }
 }
