@@ -11,10 +11,10 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.Instant;
 
-@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 public class Utente implements Serializable {
 
     @Column(name = "user_id", nullable = false)

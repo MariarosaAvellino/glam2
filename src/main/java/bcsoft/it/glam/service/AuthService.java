@@ -10,9 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.time.Instant;
 import java.util.UUID;
+
 @Service
 public class AuthService {
 
@@ -26,7 +26,7 @@ public class AuthService {
     MailService mailService;
 
     @Transactional
-    public void signUp(RegisterRequest registerRequest){
+    public void signup(RegisterRequest registerRequest){
         Utente user = new Utente();
         user.setUsername(registerRequest.getUsername());
         user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
@@ -35,7 +35,7 @@ public class AuthService {
         user.setEnable(false);
         utenteRepository.save(user);
         String token = generateVerificationToken(user);
-        mailService.sendMail(new EmailDiNotifica("Grazie per esserti registrato ", user.getEmail() + "! ", token));
+        mailService.sendMail(new EmailDiNotifica("Grazie per esserti registrato ", user.getEmail(), token));
     }
 
     private String generateVerificationToken (Utente utente){
