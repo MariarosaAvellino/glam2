@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping
+@RequestMapping (value = "/api/auth")
 public class AuthController {
     @Autowired
     AuthService authService;
 
-    @PostMapping(value= "/api/auth/")
+    @PostMapping(value = "/signUp" )
     public ResponseEntity<String> signUp (@RequestBody RegisterRequest registerRequest){
 
         authService.signUp(registerRequest);
