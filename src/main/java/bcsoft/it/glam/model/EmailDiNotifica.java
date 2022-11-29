@@ -4,6 +4,7 @@ package bcsoft.it.glam.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 
 @Data
@@ -11,7 +12,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class EmailDiNotifica implements Serializable {
 
-    private String Soggetto;
+    private String soggetto;
     private String recipiente;
     private String corpo;
 }

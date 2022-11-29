@@ -1,6 +1,7 @@
 package bcsoft.it.glam.service;
 
 import bcsoft.it.glam.dto.RegisterRequest;
+import bcsoft.it.glam.model.EmailDiNotifica;
 import bcsoft.it.glam.model.Utente;
 import bcsoft.it.glam.model.VerificationToken;
 import bcsoft.it.glam.repository.UtenteRepository;
@@ -21,6 +22,8 @@ public class AuthService {
     UtenteRepository utenteRepository;
     @Autowired
     VerificationTokenRepository verificationTokenRepository;
+    @Autowired
+    MailService mailService;
 
     @Transactional
     public void signUp(RegisterRequest registerRequest){
@@ -31,6 +34,8 @@ public class AuthService {
         user.setCreated(Instant.now());
         user.setEnable(false);
         utenteRepository.save(user);
+        String token = generateVerificationToken(user);
+        mailService.sendMail(new EmailDiNotifica("Grazie per esserti registrato ", user.getEmail() + "! ", token));
     }
 
     private String generateVerificationToken (Utente utente){
