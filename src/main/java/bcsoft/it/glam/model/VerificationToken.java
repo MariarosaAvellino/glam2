@@ -7,10 +7,10 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
 
-@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 public class VerificationToken implements Serializable {
 
     @Id

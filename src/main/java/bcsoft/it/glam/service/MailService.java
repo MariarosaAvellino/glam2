@@ -14,24 +14,24 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 @Slf4j
 public class MailService {
+
     private final JavaMailSender javaMailSender;
     private final MailContentBuilder mailContentBuilder;
 
     void sendMail(EmailDiNotifica emailDiNotifica) {
         MimeMessagePreparator mimeMessagePreparator = mimeMessage -> {
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage);
-            mimeMessageHelper.setFrom("glamCiao@gmail.com");
+            mimeMessageHelper.setFrom("glam@gmail.com");
             mimeMessageHelper.setTo(emailDiNotifica.getRecipiente());
             mimeMessageHelper.setSubject(emailDiNotifica.getSoggetto());
             mimeMessageHelper.setText(emailDiNotifica.getCorpo());
-
         };
         try {
             javaMailSender.send(mimeMessagePreparator);
-            log.info("Email è inviato");
+            log.info("Email inviata");
         } catch (MailException e) {
-            log.error("Email non è inviato", e);
-            throw new EmailException("Email non è inviato a " + emailDiNotifica.getRecipiente(), e);
+            log.error("Email non inviata", e);
+            throw new EmailException("Email non inviata a " + emailDiNotifica.getRecipiente(), e);
         }
     }
 }

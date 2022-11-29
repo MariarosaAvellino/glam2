@@ -7,10 +7,10 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 public class Voto implements Serializable {
 
     @Id
