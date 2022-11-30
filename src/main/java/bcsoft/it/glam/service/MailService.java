@@ -1,6 +1,6 @@
 package bcsoft.it.glam.service;
 
-import bcsoft.it.glam.exception.EmailException;
+import bcsoft.it.glam.exception.MyException;
 import bcsoft.it.glam.model.EmailDiNotifica;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,7 +31,7 @@ public class MailService {
             log.info("Email inviata");
         } catch (MailException e) {
             log.error("Email non inviata", e);
-            throw new EmailException("Email non inviata a " + emailDiNotifica.getRecipiente(), e);
+            throw new MyException("Email non inviata a " + emailDiNotifica.getRecipiente(), e);
         }
     }
 }
