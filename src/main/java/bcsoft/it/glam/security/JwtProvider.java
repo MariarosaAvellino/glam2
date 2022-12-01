@@ -1,5 +1,6 @@
 package bcsoft.it.glam.security;
 
+import bcsoft.it.glam.model.Utente;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
@@ -20,7 +21,7 @@ public class JwtProvider {
 
     public String generateToken(Authentication authentication) {
         User utente = (User) authentication.getPrincipal();
-
+        return generateTokenWhitUsername(utente.getUsername());
     }
 
     public String generateTokenWhitUsername(String username) {
