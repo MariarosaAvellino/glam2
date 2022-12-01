@@ -1,5 +1,6 @@
 package bcsoft.it.glam.service;
 
+import bcsoft.it.glam.dto.LoginRequest;
 import bcsoft.it.glam.dto.RegisterRequest;
 import bcsoft.it.glam.exception.MyException;
 import bcsoft.it.glam.model.EmailDiNotifica;
@@ -8,6 +9,8 @@ import bcsoft.it.glam.model.VerificationToken;
 import bcsoft.it.glam.repository.UtenteRepository;
 import bcsoft.it.glam.repository.VerificationTokenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,6 +30,8 @@ public class AuthService {
     VerificationTokenRepository verificationTokenRepository;
     @Autowired
     MailService mailService;
+    @Autowired
+    AuthenticationManager authenticationManager;
 
     @Transactional
     public void signup(RegisterRequest registerRequest) {
@@ -68,6 +73,10 @@ public class AuthService {
         });
         user.setEnable(true);
         utenteRepository.save(user);
+    }
+
+    public void login(LoginRequest loginRequest){
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(),loginRequest.getPassword()));
     }
 
 }
