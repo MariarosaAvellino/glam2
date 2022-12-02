@@ -9,9 +9,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class SubRedditRequest {
+public class SubRedditDto {
 
-    private String id;
+    private long id;
     private String nome;
     private String descrizione;
     private Integer numeroPost;
