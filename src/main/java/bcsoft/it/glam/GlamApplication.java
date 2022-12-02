@@ -7,7 +7,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @SpringBootApplication
 @EnableAsync
 public class GlamApplication {
-	//ciao
+
 	public static void main(String[] args) {
 		SpringApplication.run(GlamApplication.class, args);
 	}
