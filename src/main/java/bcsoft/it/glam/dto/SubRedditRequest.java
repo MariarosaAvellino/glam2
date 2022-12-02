@@ -9,9 +9,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class RegisterRequest {
+public class SubRedditRequest {
 
-    private String email;
-    private String password;
-    private String username;
+    private String id;
+    private String nome;
+    private String descrizione;
+    private Integer numeroPost;
+
 }
