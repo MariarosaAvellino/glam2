@@ -1,6 +1,7 @@
 package bcsoft.it.glam.service;
 
 import bcsoft.it.glam.dto.SubRedditDto;
+import bcsoft.it.glam.exception.MyException;
 import bcsoft.it.glam.mapper.SubRedditMapper;
 import bcsoft.it.glam.model.SubReddit;
 import bcsoft.it.glam.repository.SubRedditRepository;
@@ -35,4 +36,12 @@ public class SubRedditService {
                 .map(subRedditMapper::mapSubRedditToDto)
                 .collect(Collectors.toList());
     }
+
+    @Transactional
+    public SubRedditDto getById(long id ){
+        return subRedditRepository.findById(id)
+                .map(subRedditMapper::mapSubRedditToDto)
+                .orElseThrow(()->new MyException("SubReddit non trovato con questo id" +id));
+    }
 }
+
