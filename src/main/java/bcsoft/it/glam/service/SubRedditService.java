@@ -27,7 +27,7 @@ public class SubRedditService {
         return subRedditDto;
 
     }
-    
+
     @Transactional
     public List<SubRedditDto> getAll() {
         return subRedditRepository
@@ -43,5 +43,6 @@ public class SubRedditService {
                 .map(subRedditMapper::mapSubRedditToDto)
                 .orElseThrow(()->new MyException("SubReddit non trovato con questo id" +id));
     }
+
 }
 

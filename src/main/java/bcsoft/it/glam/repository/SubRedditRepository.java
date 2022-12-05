@@ -7,5 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SubRedditRepository extends JpaRepository<SubReddit, Long> {
+    
     public SubRedditDto getById(long id);
 }
