@@ -1,6 +1,7 @@
 package bcsoft.it.glam.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,10 +12,11 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.Instant;
 
-@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
+@Entity
 public class Utente implements Serializable {
 
     @Column(name = "user_id", nullable = false)

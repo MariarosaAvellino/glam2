@@ -6,12 +6,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class RegisterRequest {
+public class LoginRequest {
 
-    private String email;
-    private String password;
     private String username;
+    private String password;
 }

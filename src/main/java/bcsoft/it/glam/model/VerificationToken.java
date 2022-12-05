@@ -1,16 +1,18 @@
 package bcsoft.it.glam.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
 
-@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
+@Entity
 public class VerificationToken implements Serializable {
 
     @Id
