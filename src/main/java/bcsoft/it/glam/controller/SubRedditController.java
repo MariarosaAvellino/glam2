@@ -1,7 +1,6 @@
 package bcsoft.it.glam.controller;
 
 import bcsoft.it.glam.dto.SubRedditDto;
-import bcsoft.it.glam.model.SubReddit;
 import bcsoft.it.glam.service.SubRedditService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
