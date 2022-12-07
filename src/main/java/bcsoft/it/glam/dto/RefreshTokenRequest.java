@@ -14,4 +14,5 @@ public class RefreshTokenRequest {
     @NotBlank
     private String refreshToken;
     private String username;
+
 }

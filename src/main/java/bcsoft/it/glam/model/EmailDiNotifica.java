@@ -15,4 +15,5 @@ public class EmailDiNotifica implements Serializable {
     private String soggetto;
     private String recipiente;
     private String corpo;
+
 }

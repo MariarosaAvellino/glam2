@@ -32,5 +32,4 @@ public class Commento implements Serializable {
     @JoinColumn(name="userId", referencedColumnName = "user_id")
     private Utente utente;
 
-
 }

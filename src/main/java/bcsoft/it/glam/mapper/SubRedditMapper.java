@@ -23,5 +23,4 @@ public interface SubRedditMapper {
     @Mapping(target = "posts", ignore = true)
     SubReddit mapDtoToSubReddit(SubRedditDto subRedditDto);
 
-
 }
