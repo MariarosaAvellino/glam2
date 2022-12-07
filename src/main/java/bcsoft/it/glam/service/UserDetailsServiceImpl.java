@@ -17,6 +17,7 @@ import java.util.Optional;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
+
     @Autowired
     private UtenteRepository userRepository;
 
@@ -26,8 +27,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         Utente user1 = (user).orElseThrow(() -> {
             throw new UsernameNotFoundException("User non è trovato");
         });
-
-
         return new org.springframework.security.core.userdetails.User(user1.getUsername(), user1.getPassword(),
                 user1.isEnable(), true, true, true, getAuthorities("User"));
     }

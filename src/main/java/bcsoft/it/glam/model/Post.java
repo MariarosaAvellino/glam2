@@ -41,6 +41,4 @@ public class Post implements Serializable {
     @JoinColumn(name = "id")
     private SubReddit subReddit;
 
-
-
 }

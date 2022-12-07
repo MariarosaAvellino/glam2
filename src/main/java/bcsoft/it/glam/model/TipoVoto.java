@@ -1,6 +1,7 @@
 package bcsoft.it.glam.model;
 
 public enum TipoVoto {
+
     UP_VOTE(1),
     DOWN_VOTE(-1);
 
@@ -13,4 +14,5 @@ public enum TipoVoto {
     public int getDirection() {
         return direction;
     }
+
 }

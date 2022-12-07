@@ -11,8 +11,9 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/subreddit")
+@RequestMapping("/api/subreddit")
 public class SubRedditController {
+
     private final SubRedditService subRedditService;
 
     @PostMapping("/save")
