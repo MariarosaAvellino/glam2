@@ -3,6 +3,8 @@ package bcsoft.it.glam.mapper;
 import bcsoft.it.glam.dto.PostRequest;
 import bcsoft.it.glam.dto.PostResponse;
 import bcsoft.it.glam.model.*;
+import static bcsoft.it.glam.model.TipoVoto.DOWN_VOTE;
+import static bcsoft.it.glam.model.TipoVoto.UP_VOTE;
 import bcsoft.it.glam.repository.CommentoRepository;
 import bcsoft.it.glam.repository.VotoRepository;
 import bcsoft.it.glam.service.AuthService;
@@ -10,22 +12,24 @@ import com.github.marlonlom.utilities.timeago.TimeAgo;
 import lombok.AllArgsConstructor;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Optional;
 
 @Mapper(componentModel = "spring")
-@AllArgsConstructor
 public abstract class PostMapper {
 
-    private final CommentoRepository commentoRepository;
-    private final AuthService authService;
-    private final VotoRepository votoRepository;
-    private final TipoVoto tipoVoto;
-
+    @Autowired
+    private  CommentoRepository commentoRepository;
+    @Autowired
+    private  AuthService authService;
+    @Autowired
+    private  VotoRepository votoRepository;
+    
     @Mapping(target = "dataCreazione", expression = "java(java.time.Instant.now() )")
     @Mapping(target = "description", source = "postRequest.description")
     @Mapping(target ="subReddit", source = "subReddit")
-    @Mapping(target ="voteCount", constant ="0")
+    @Mapping(target ="contatoreVoti", constant ="0")
     @Mapping(target ="utente", source ="utente")
     public abstract Post map(PostRequest postRequest, SubReddit subReddit, Utente utente);
 
@@ -47,10 +51,10 @@ public abstract class PostMapper {
     }
 
     public boolean isPostUpVoted(Post post){
-        return checkVoteType(post, TipoVoto.UP_VOTE);}
+        return checkVoteType(post, UP_VOTE);}
 
     public boolean isPostDownVoted(Post post){
-        return checkVoteType(post, TipoVoto.DOWN_VOTE);}
+        return checkVoteType(post, DOWN_VOTE);}
     
 
     private boolean checkVoteType(Post post, TipoVoto tipoVoto) {
