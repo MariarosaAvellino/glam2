@@ -30,8 +30,8 @@ public class Post implements Serializable {
     private String url;
     @NotNull
     @Lob
-    private String descrizione;
-    private int contatoreVoti;
+    private String description;
+    private int contatoreVoti=0;
     private Instant dataCreazione;
 
     @ManyToOne
