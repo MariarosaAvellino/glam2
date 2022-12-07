@@ -18,7 +18,6 @@ import java.util.List;
 public class CommentoController {
 
     private final CommentoService commentoService;
-    private final UtenteRepository utenteRepository;
 
     @PostMapping("/save")
     public ResponseEntity<Void> save(@RequestBody CommentoDto commentoDto){

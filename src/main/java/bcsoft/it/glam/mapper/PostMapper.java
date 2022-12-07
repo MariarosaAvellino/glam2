@@ -25,7 +25,7 @@ public abstract class PostMapper {
     private  AuthService authService;
     @Autowired
     private  VotoRepository votoRepository;
-    
+
     @Mapping(target = "dataCreazione", expression = "java(java.time.Instant.now() )")
     @Mapping(target = "description", source = "postRequest.description")
     @Mapping(target ="subReddit", source = "subReddit")
@@ -60,7 +60,7 @@ public abstract class PostMapper {
     private boolean checkVoteType(Post post, TipoVoto tipoVoto) {
         if (authService.isLoggedIn()) {
             Optional<Voto> votoPostByUtente =
-                    votoRepository.findTopByPostAndUtenteOrderByVotoIdDesc(post,
+                    votoRepository.findTopByPostAndUtenteOrderByIdVotoDesc(post,
                             authService.getUtenteCorrente());
             return votoPostByUtente.filter(voto -> voto.getTipoVoto().equals(tipoVoto))
                     .isPresent();
