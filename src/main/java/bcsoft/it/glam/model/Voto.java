@@ -18,6 +18,7 @@ public class Voto implements Serializable {
     @Id
     @Column(name = "id_voto")
     private Long idVoto;
+    private TipoVoto tipoVoto;
 
     @ManyToOne
     @JoinColumn(name="userId", referencedColumnName = "user_id")

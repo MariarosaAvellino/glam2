@@ -2,10 +2,7 @@ package bcsoft.it.glam.mapper;
 
 import bcsoft.it.glam.dto.PostRequest;
 import bcsoft.it.glam.dto.PostResponse;
-import bcsoft.it.glam.model.Post;
-import bcsoft.it.glam.model.SubReddit;
-import bcsoft.it.glam.model.TipoVoto;
-import bcsoft.it.glam.model.Utente;
+import bcsoft.it.glam.model.*;
 import bcsoft.it.glam.repository.CommentoRepository;
 import bcsoft.it.glam.repository.VotoRepository;
 import bcsoft.it.glam.service.AuthService;
@@ -14,6 +11,8 @@ import lombok.AllArgsConstructor;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+import java.util.Optional;
+
 @Mapper(componentModel = "spring")
 @AllArgsConstructor
 public abstract class PostMapper {
@@ -21,7 +20,8 @@ public abstract class PostMapper {
     private final CommentoRepository commentoRepository;
     private final AuthService authService;
     private final VotoRepository votoRepository;
-/*
+    private final TipoVoto tipoVoto;
+
     @Mapping(target = "dataCreazione", expression = "java(java.time.Instant.now() )")
     @Mapping(target = "description", source = "postRequest.description")
     @Mapping(target ="subReddit", source = "subReddit")
@@ -46,15 +46,23 @@ public abstract class PostMapper {
         return TimeAgo.using(post.getDataCreazione().toEpochMilli());
     }
 
-    public boolean isPostUpVoted(Post post){}
+    public boolean isPostUpVoted(Post post){
+        return checkVoteType(post, TipoVoto.UP_VOTE);}
 
-    public boolean isPostDownVoted(Post post){}
+    public boolean isPostDownVoted(Post post){
+        return checkVoteType(post, TipoVoto.DOWN_VOTE);}
+    
 
-    private boolean checkVoteType(TipoVoto tipoVoto){
-        if(){
-
+    private boolean checkVoteType(Post post, TipoVoto tipoVoto) {
+        if (authService.isLoggedIn()) {
+            Optional<Voto> votoPostByUtente =
+                    votoRepository.findTopByPostAndUtenteOrderByVotoIdDesc(post,
+                            authService.getUtenteCorrente());
+            return votoPostByUtente.filter(voto -> voto.getTipoVoto().equals(tipoVoto))
+                    .isPresent();
         }
+        return false;
     }
 
- */
+
 }
